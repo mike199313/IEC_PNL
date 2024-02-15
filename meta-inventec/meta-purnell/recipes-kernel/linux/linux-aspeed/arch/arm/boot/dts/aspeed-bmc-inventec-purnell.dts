@@ -17,6 +17,7 @@
                 i2c21 = &fan_bd1;
                 i2c22 = &i2c6_mux_3;
 		i2c23 = &i2c7_mux_0;
+                i2c24 = &i2c7_mux_2;
 	};
 
 	chosen {
@@ -424,6 +425,13 @@
 	                                #io-channel-cells = <1>;
 	                        };
 			};
+                /* i2c-24 */
+                i2c7_mux_2: i2c@2 {
+
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <2>;
+                };
 	};
 };
 
