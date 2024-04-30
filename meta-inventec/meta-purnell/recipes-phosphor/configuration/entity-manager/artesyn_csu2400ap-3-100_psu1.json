@@ -1,0 +1,128 @@
+{
+    "Exposes": [
+        {
+            "Address": "0x58",
+            "Bus": "24",
+            "Labels": [
+                "temp1",
+                "temp2",
+                "temp3"
+            ],
+            "temp1_Scale" : 1000,
+            "temp1_Max" : 95,
+            "temp1_Name" : "PSU1_Temp1",
+            "temp2_Scale" : 1000,
+            "temp2_Max" : 95,
+            "temp2_Name" : "PSU1_Temp2",
+            "temp3_Scale" : 1000,
+            "temp3_Max" : 95,
+            "temp3_Name" : "PSU1_Temp3",
+            "Name": "PSU1",
+            "Thresholds": [
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp1",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 65
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp1",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp2",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 65
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp2",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp2",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp3",
+                    "Name": "upper critical",
+                    "Severity": 1,
+                    "Value": 70
+                },
+                {
+                    "Direction": "greater than",
+                    "Label": "temp3",
+                    "Name": "upper non critical",
+                    "Severity": 0,
+                    "Value": 65
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp3",
+                    "Name": "lower non critical",
+                    "Severity": 0,
+                    "Value": 5
+                },
+                {
+                    "Direction": "less than",
+                    "Label": "temp3",
+                    "Name": "lower critical",
+                    "Severity": 1,
+                    "Value": 0
+                }
+            ],
+            "Type": "pmbus"
+        }
+    ],
+    "Name": "PSU1",
+    "Probe": "TRUE",
+    "Type": "Product",
+    "xyz.openbmc_project.Inventory.Decorator.Asset": {
+        "Manufacturer": "$PRODUCT_MANUFACTURER",
+        "Model": "$PRODUCT_PRODUCT_NAME",
+        "PartNumber": "$PRODUCT_PART_NUMBER",
+        "SerialNumber": "$PRODUCT_SERIAL_NUMBER",
+        "BuildDate": "$BOARD_MANUFACTURE_DATE"
+    },
+    "xyz.openbmc_project.Inventory.Decorator.Revision":{
+        "Version": "$PRODUCT_VERSION"
+    },
+        "xyz.openbmc_project.Inventory.Decorator.FruDevice":{
+        "Bus":24,
+        "Address":80
+    }
+
+}
