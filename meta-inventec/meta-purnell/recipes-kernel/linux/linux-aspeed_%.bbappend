@@ -16,6 +16,7 @@ SRC_URI:append = " file://superion.cfg \
 		   file://0012-peci-dimmtemp-presence-detection.patch \
                    file://0013-Purnell_ADT7462_driver_update_inv.patch \
                    file://0014-kernel-driver-update-for-CPU-SRF-SP.patch \
+                   file://0015-pmbus-mdelay-3ms-for-PDB-Board.patch \
                  "
 
 do_add_overwrite_files () {
