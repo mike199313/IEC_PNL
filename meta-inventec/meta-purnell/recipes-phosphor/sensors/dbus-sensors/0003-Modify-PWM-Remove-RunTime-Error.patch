@@ -1,0 +1,29 @@
+From b33756aebc1cba4a1ee26b54bc827ab2dda89ede Mon Sep 17 00:00:00 2001
+From: "Cheng.Mike" <Cheng.Mike@inventec.com>
+Date: Tue, 31 Oct 2023 13:56:17 +0800
+Subject: [PATCH 1/1] Modify-Tach-gpioName-And-Pwm-Remove-runtime_Error
+
+---
+ src/PwmSensor.cpp  | 2 ++
+ 2 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/src/PwmSensor.cpp b/src/PwmSensor.cpp
+index c1f0674..3014d97 100644
+--- a/src/PwmSensor.cpp
++++ b/src/PwmSensor.cpp
+@@ -189,10 +189,12 @@ PwmSensor::~PwmSensor()
+ void PwmSensor::setValue(uint32_t value)
+ {
+     std::ofstream ref(sysPath);
++    /*
+     if (!ref.good())
+     {
+         throw std::runtime_error("Bad Write File");
+     }
++    */
+     ref << value;
+ }
+ 
+-- 
+2.34.1
+

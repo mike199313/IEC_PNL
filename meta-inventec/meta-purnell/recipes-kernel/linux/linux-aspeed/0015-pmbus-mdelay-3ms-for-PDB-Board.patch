@@ -1,0 +1,105 @@
+From a01023169c40e2c1181f6fa3c6daf84d8db7389e Mon Sep 17 00:00:00 2001
+From: "Cheng.Mike" <Cheng.Mike@inventec.com>
+Date: Thu, 19 Oct 2023 17:37:01 +0800
+Subject: [PATCH 1/1] pmbus-mdelay-for-PDB-Bpard
+
+---
+ drivers/hwmon/pmbus/pmbus_core.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/drivers/hwmon/pmbus/pmbus_core.c b/drivers/hwmon/pmbus/pmbus_core.c
+index f495f0e79392..6331347da63f 100644
+--- a/drivers/hwmon/pmbus/pmbus_core.c
++++ b/drivers/hwmon/pmbus/pmbus_core.c
+@@ -19,6 +19,7 @@
+ #include <linux/pmbus.h>
+ #include <linux/regulator/driver.h>
+ #include <linux/regulator/machine.h>
++#include <linux/delay.h>
+ #include "pmbus.h"
+ 
+ /*
+@@ -203,6 +204,8 @@ int pmbus_write_byte(struct i2c_client *client, int page, u8 value)
+ 	int rv;
+ 
+ 	rv = pmbus_set_page(client, page, 0xff);
++	mdelay(3);
++
+ 	if (rv < 0)
+ 		return rv;
+ 
+@@ -219,6 +222,7 @@ static int _pmbus_write_byte(struct i2c_client *client, int page, u8 value)
+ 	struct pmbus_data *data = i2c_get_clientdata(client);
+ 	const struct pmbus_driver_info *info = data->info;
+ 	int status;
++	mdelay(3);
+ 
+ 	if (info->write_byte) {
+ 		status = info->write_byte(client, page, value);
+@@ -232,6 +236,7 @@ int pmbus_write_word_data(struct i2c_client *client, int page, u8 reg,
+ 			  u16 word)
+ {
+ 	int rv;
++	mdelay(3);
+ 
+ 	rv = pmbus_set_page(client, page, 0xff);
+ 	if (rv < 0)
+@@ -273,6 +278,7 @@ static int _pmbus_write_word_data(struct i2c_client *client, int page, int reg,
+ 	struct pmbus_data *data = i2c_get_clientdata(client);
+ 	const struct pmbus_driver_info *info = data->info;
+ 	int status;
++	mdelay(3);
+ 
+ 	if (info->write_word_data) {
+ 		status = info->write_word_data(client, page, reg, word);
+@@ -314,6 +320,7 @@ EXPORT_SYMBOL_NS_GPL(pmbus_update_fan, PMBUS);
+ int pmbus_read_word_data(struct i2c_client *client, int page, int phase, u8 reg)
+ {
+ 	int rv;
++	mdelay(3);
+ 
+ 	rv = pmbus_set_page(client, page, phase);
+ 	if (rv < 0)
+@@ -351,6 +358,7 @@ static int _pmbus_read_word_data(struct i2c_client *client, int page,
+ 	struct pmbus_data *data = i2c_get_clientdata(client);
+ 	const struct pmbus_driver_info *info = data->info;
+ 	int status;
++	mdelay(3);
+ 
+ 	if (info->read_word_data) {
+ 		status = info->read_word_data(client, page, phase, reg);
+@@ -373,6 +381,7 @@ static int __pmbus_read_word_data(struct i2c_client *client, int page, int reg)
+ int pmbus_read_byte_data(struct i2c_client *client, int page, u8 reg)
+ {
+ 	int rv;
++	mdelay(3);
+ 
+ 	rv = pmbus_set_page(client, page, 0xff);
+ 	if (rv < 0)
+@@ -385,6 +394,7 @@ EXPORT_SYMBOL_NS_GPL(pmbus_read_byte_data, PMBUS);
+ int pmbus_write_byte_data(struct i2c_client *client, int page, u8 reg, u8 value)
+ {
+ 	int rv;
++	mdelay(3);
+ 
+ 	rv = pmbus_set_page(client, page, 0xff);
+ 	if (rv < 0)
+@@ -399,6 +409,7 @@ int pmbus_update_byte_data(struct i2c_client *client, int page, u8 reg,
+ {
+ 	unsigned int tmp;
+ 	int rv;
++	mdelay(3);
+ 
+ 	rv = pmbus_read_byte_data(client, page, reg);
+ 	if (rv < 0)
+@@ -422,6 +433,7 @@ static int _pmbus_read_byte_data(struct i2c_client *client, int page, int reg)
+ 	struct pmbus_data *data = i2c_get_clientdata(client);
+ 	const struct pmbus_driver_info *info = data->info;
+ 	int status;
++	mdelay(3);
+ 
+ 	if (info->read_byte_data) {
+ 		status = info->read_byte_data(client, page, reg);
+-- 
+2.34.1
+
